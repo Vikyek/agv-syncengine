@@ -165,7 +165,7 @@ prompt_token_retry() {
 
 # Ensure origin remote is set
 if ! git remote get-url origin &>/dev/null; then
-    DEFAULT_REMOTE="git@github.com:Vikyek/agy-syncvault.git"
+    DEFAULT_REMOTE="https://github.com/<YOUR_USER>/agv-syncvault.git"
     echo "ℹ️  Origin remote not set. Defaulting to '${DEFAULT_REMOTE}'."
     git remote add origin "${DEFAULT_REMOTE}" 2>/dev/null || true
 fi
