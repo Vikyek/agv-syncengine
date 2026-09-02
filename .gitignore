@@ -1,0 +1,24 @@
+# Secrets & Credentials
+.vault_credentials.env
+*.env
+*.key
+*.pem
+*.token
+.env*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# CodeGraph & Caches
+.codegraph/
+.aider*
+.jules/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

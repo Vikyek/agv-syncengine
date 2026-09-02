@@ -1,0 +1,160 @@
+{
+  "rtk": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/v/.local/bin/tokless rtk-hook agy",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "tokless-codegraph-index": {
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/v/.local/bin/tokless agy-hook codegraph-index",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "PreInvocation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/v/.local/bin/tokless agy-hook codegraph-index",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  },
+  "rule-injection-defense": {
+    "PreInvocation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/v/.gemini/config/scripts/scan_rules.py --hook",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "convo-tagging": {
+    "PreInvocation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/tag_conversations.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostInvocation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/tag_conversations.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/tag_conversations.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "vault-auto-sync": {
+    "PreInvocation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/auto_sync_vault.py",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PostInvocation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/auto_sync_vault.py",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/auto_sync_vault.py",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  },
+  "project-auto-push": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/auto_push_projects.py",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  },
+  "project-auto-pull": {
+    "PreInvocation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/auto_push_projects.py --pull",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
