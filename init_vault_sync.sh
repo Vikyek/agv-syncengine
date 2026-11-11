@@ -2,7 +2,7 @@
 # ==============================================================================
 # Initializer & First Sync Runner for Gemini Config Vault
 # Usage: ./init_vault_sync.sh
-# Autonomously creates the private GitHub repository 'agy-syncvault',
+# Autonomously creates the private GitHub repository 'agv-syncvault',
 # initializes local Git repository, stages rules/configs, and performs first sync.
 # ==============================================================================
 
@@ -34,7 +34,7 @@ fi
 
 GITHUB_USER=""
 GITHUB_TOKEN=""
-REPO_NAME="agy-syncvault"
+REPO_NAME="agv-syncvault"
 
 # Load saved vault credentials if available
 if [[ -f "${CONFIG_FILE}" ]]; then

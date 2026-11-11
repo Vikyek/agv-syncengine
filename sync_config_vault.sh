@@ -25,7 +25,7 @@ cd "${VAULT_DIR}"
 
 GITHUB_USER=""
 GITHUB_TOKEN=""
-REPO_NAME="agy-syncvault"
+REPO_NAME="agv-syncvault"
 
 # Load saved vault credentials if available
 if [[ -f "${CONFIG_FILE}" ]]; then
