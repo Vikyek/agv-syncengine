@@ -8,7 +8,8 @@ Derived from `agv-syncvault`, `agv-syncengine` comes scrubbed of personal user d
 
 ## 🚀 Features
 
-- **Automated Private Vault Sync**: Synchronizes system rules (`GEMINI.md`, `AGENTS.md`), skills, and configuration files across multiple machines using git rebase/push workflows.
+- **Automated Private Vault Sync**: Synchronizes system rules (`GEMINI.md`, `AGENTS.md`), categorized `knowledge/*.md` bases, skills, and configuration files across multiple machines using git rebase/push workflows.
+- **Categorized Knowledge Base & FTS5 Router**: Splits monolithic `GEMINI.md` files into topic/host-scoped `knowledge/*.md` files (`categorize_rules.py`) and injects only matching categories per turn via local SQLite FTS5, hostname, and workspace markers (`kb_router.py`) to prevent rules-budget truncation.
 - **Rule Injection Defense**: Automated pre-commit & pre-invocation scanner (`scan_rules.py`) detecting prompt poisoning, credential exfiltration, and malicious instruction injections.
 - **`tokless` Token Savings**: Integrated rules and hooks for pre-indexing repositories (`codegraph`) and utilizing context sandboxes (`context-mode`).
 - **Standard Dev Rules**: Out-of-the-box support for:
@@ -45,11 +46,17 @@ agv-syncengine/
 ├── hooks.json            # Agent pre-invocation & pre-commit hook configuration
 ├── hooks/
 │   └── pre-commit.sh     # Git pre-commit rule scanner validation
+├── knowledge/
+│   └── .gitkeep          # Categorized knowledge/*.md bases (populated in private vault)
 ├── scripts/
-│   ├── scan_rules.py     # Prompt poisoning and security rule auditor
-│   ├── tag_conversations.py # Conversation learning marker
+│   ├── categorize_rules.py       # Splits monolithic GEMINI.md into knowledge/*.md
+│   ├── kb_router.py              # SQLite FTS5 + host/workspace PreInvocation router
+│   ├── scan_rules.py             # Prompt poisoning and security rule auditor
+│   ├── tag_conversations.py      # Conversation learning marker
 │   ├── check_unprocessed_convos.py # Unlearned conversation discovery helper
-│   └── auto_sync_vault.py   # Non-blocking sync daemon/helper
+│   └── auto_sync_vault.py        # Non-blocking sync daemon/helper
+├── tests/
+│   └── test_kb_router.py # Unit tests for rule categorization and FTS5 routing
 ├── LICENSE               # MIT License
 └── README.md             # Documentation
 ```

@@ -156,5 +156,19 @@
         ]
       }
     ]
+  },
+  "kb-router": {
+    "PreInvocation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/v/.gemini/config/scripts/kb_router.py --hook",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
   }
 }

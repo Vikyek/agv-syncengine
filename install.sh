@@ -26,6 +26,7 @@ mkdir -p "${TARGET_DIR}"
 # 1. Copy template files to vault directory
 echo "📦 Copying engine files to '${TARGET_DIR}'..."
 cp -rn "${SCRIPT_DIR}"/scripts "${TARGET_DIR}/" 2>/dev/null || cp -r "${SCRIPT_DIR}"/scripts "${TARGET_DIR}/"
+cp -rn "${SCRIPT_DIR}"/knowledge "${TARGET_DIR}/" 2>/dev/null || cp -r "${SCRIPT_DIR}"/knowledge "${TARGET_DIR}/"
 cp -rn "${SCRIPT_DIR}"/hooks "${TARGET_DIR}/" 2>/dev/null || cp -r "${SCRIPT_DIR}"/hooks "${TARGET_DIR}/"
 cp -n "${SCRIPT_DIR}"/hooks.json "${TARGET_DIR}/" 2>/dev/null || true
 cp -n "${SCRIPT_DIR}"/sync_config_vault.sh "${TARGET_DIR}/" 2>/dev/null || true

@@ -49,7 +49,8 @@ def run_hook():
         targets = [
             os.path.join(ws, "GEMINI.md"),
             os.path.join(ws, "AGENTS.md"),
-            os.path.join(ws, ".agents/rules")
+            os.path.join(ws, ".agents/rules"),
+            os.path.join(ws, "knowledge"),
         ]
         
         for t in targets:
