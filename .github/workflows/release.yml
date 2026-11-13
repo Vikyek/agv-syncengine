@@ -1,0 +1,42 @@
+name: Release & Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run verification suite
+        run: |
+          python -m pip install --upgrade pip pytest
+          bash -n install.sh init_vault_sync.sh sync_config_vault.sh hooks/pre-commit.sh
+          python3 scripts/scan_rules.py --test
+          pytest -q
+
+      - name: Build release archive
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          git archive --format=tar.gz --prefix="agv-syncengine-${TAG#v}/" -o "agv-syncengine-${TAG}.tar.gz" HEAD
+          sha256sum "agv-syncengine-${TAG}.tar.gz" > "agv-syncengine-${TAG}.tar.gz.sha256"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            agv-syncengine-*.tar.gz
+            agv-syncengine-*.tar.gz.sha256
